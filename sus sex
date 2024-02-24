@@ -1,0 +1,29 @@
+-- Create ScreenGui
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Create Frame
+local notification = Instance.new("Frame")
+notification.Name = "Notification"
+notification.Parent = screenGui
+notification.Size = UDim2.new(0, 200, 0, 100)
+notification.Position = UDim2.new(1, -220, 1, -120)  -- Bottom right corner
+notification.BackgroundColor3 = Color3.new(0, 0, 0)  -- Black background color
+notification.BackgroundTransparency = getgenv().settings.Transparency
+
+-- Add content to the frame (e.g., TextLabel)
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = notification
+textLabel.Size = UDim2.new(1, 0, 1, 0)
+textLabel.Text = getgenv().settings.Text
+textLabel.TextSize = 18  -- Decreased text size
+textLabel.TextColor3 = getgenv().settings.Color
+textLabel.BackgroundTransparency = 1  -- Fully transparent background
+
+-- Optional: Make the GUI always visible
+game:GetService("RunService").RenderStepped:Connect(function()
+    notification.Size = UDim2.new(0, 200, 0, 100)
+    notification.Position = UDim2.new(1, -220, 1, -120)
+end)
